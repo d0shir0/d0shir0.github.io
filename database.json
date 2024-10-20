@@ -1,0 +1,59 @@
+ {
+  "tactics": [
+  {
+      "id": "4faa632f-91dd-48c4-a94f-d229d5398016",
+      "name": "Reconnaissance"
+  },
+  {
+      "id": "d9613b28-8037-44f3-b00d-162a6ebcec82",
+      "name": "Resource Development"    
+  },
+  {
+      "id": "8b392d6a-0be0-497e-994e-c2f5502e8760",
+      "name": "Initial Access"
+  },
+  {
+      "id": "91302f11-3c9d-44be-94fe-7ccec60a5fb1",
+      "name": "Execution"
+  },
+  { 
+      "id": "a9ded5c0-6b01-4fcc-8d43-48fd0bec210d",
+      "name": "Persistence"
+  },
+  {
+      "id": "476452b4-7e48-4776-8db9-ef26d8d20bca",
+      "name": "Privilege Escalation"
+  },
+  {
+      "id": "2d06edc1-21c0-4117-86e4-36e16edbbace",
+      "name": "Defense Evasion" 
+  },
+  {
+      "id": "6f9dd9e6-a716-4ef5-9e95-c3573f724257",
+      "name": "Credential Access"
+  },
+  {
+      "id": "047e61a2-a272-4f7d-ab05-5aa83c1cb987",
+      "name": "Discovery"
+  },
+  {
+      "id": "df869f84-e636-4f0f-adf2-3a7c8e789fa4",
+      "name": "Lateral Movement"
+  },
+  {
+      "id": "efc0cd2e-1f6b-43f9-92a6-a48b20d436d9",
+      "name": "Collection"
+  },
+  {
+      "id": "cff1b8da-72ef-400d-afdc-8e74d331031c",
+      "name": "Command and Control"
+  },
+  {
+      "id": "df5c9305-de52-4dcc-ab1f-8d9522c7b93a",
+      "name": "Exfiltration"
+  },
+  {
+      "id": "6d8f66e5-0e6d-4486-a77f-4ddecc919bde",
+      "name": "Impact" 
+  } ]
+}
