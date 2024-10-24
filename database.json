@@ -64,20 +64,48 @@
     "releaseyear": "1983",
     "releasemonth": "06",
     "director": "John Badham",
-    "wikipedia": "https://en.wikipedia.org/wiki/WarGames"
- }
-  ],
+    "wikipedia": "https://en.wikipedia.org/wiki/WarGames",
     "scenes":[
- {
-   "id": "93455d5b-0d5f-4ac9-a54f-04e704fa9b32",
-   "element": "b8ebe09c-6377-4987-8764-c11228b09323",
-   "reference": {
-      "season" : "",
-      "episode" : "",
-       "timecode" : "00:00:00"
+   {
+    "id": "93455d5b-0d5f-4ac9-a54f-04e704fa9b32",
+     "description": "Lorem",
+     "phases":[
+    {
+     "reference": {
+       "season" : "",
+       "episode" : "",
+        "timecode" : "00:00:00"
+     },
+     "description": "Lorem-p1",
+     "tactic": "d9613b28-8037-44f3-b00d-162a6ebcec82"
     },
-    "tactic": "4faa632f-91dd-48c4-a94f-d229d5398016",
-    "description": "Lorem"
-  }
-]
+     {
+     "reference": {
+       "season" : "",
+       "episode" : "",
+        "timecode" : "00:00:01"
+     },
+     "description": "Lorem-p2",
+     "tactic": "4faa632f-91dd-48c4-a94f-d229d5398016"
+    }
+    ]
+   },
+   {
+    "id": "85f515d8-eeb8-492b-9429-61c9ba6fc9d4",
+    "description": "ipsum",
+     "phases":[
+    {
+    "reference": {
+       "season" : "",
+       "episode" : "",
+        "timecode" : "00:01:01"
+     },
+     "description": "ipsum-p1",
+     "tactic": "4faa632f-91dd-48c4-a94f-d229d5398016"
+    }
+    ]
+   }
+ ]
+ }
+  ]
 }
