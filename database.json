@@ -2,11 +2,30 @@
   "tactics": [
   {
       "id": "4faa632f-91dd-48c4-a94f-d229d5398016",
-      "name": "Reconnaissance"
+      "name": "Reconnaissance",
+      "techniques": [
+        {
+            "id": "d6c3db27d-6022-45b3-bb75-aa5d0bb2d9e9",
+            "name": "Active Scanning"      ,
+            "reference": ""
+        },
+        {
+            "id": "eba93308-ea67-48d3-a368-7fec15c50900",
+            "name": "Gather Victim Information",
+            "reference": ""      
+        }
+      ] 
   },
   {
       "id": "d9613b28-8037-44f3-b00d-162a6ebcec82",
-      "name": "Resource Development"    
+      "name": "Resource Development",
+      "techniques": [
+        {
+            "id": "9272a6a4-65a1-4832-a23a-0cb27cca0a4b",
+            "name": "Develop malware or exploits",
+            "reference": ""      
+        }
+      ]      
   },
   {
       "id": "8b392d6a-0be0-497e-994e-c2f5502e8760",
