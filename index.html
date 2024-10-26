@@ -25,8 +25,13 @@
         <span class="input-group-text" id="search">Search</span>
         <input type="text" class="form-control" placeholder="Movie, TV show, book, CyberSecurity tactic or technique" aria-label="search" aria-describedby="addon-wrapping" id="searchinput">
       </div>
-      <div class="d-flex justify-content-center"><span><span id="tacticsCount"></span> tactics  | </span><span id="elementsCount"></span>movies  | <span id="scenesCount"></span> scenes | </div></div>
+      </div>
     </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <span><button type="button" class="btn text-bg-light">Tactics<span  style="margin: 5px;" class="badge text-bg-secondary"><span id="tacticsCount"></span></button></span>
+    <span><button type="button" class="btn text-bg-light" >Movies/TVShows/Books<span  style="margin: 5px;" class="badge text-bg-secondary"><span id="elementsCount"></span></button></span>
+    <span><button type="button" class="btn text-bg-light">Scenes <span  style="margin: 5px;" class="badge text-bg-secondary"><span id="scenesCount"></span></span></button></span>
   </div>
   <div>
 </div>
@@ -34,8 +39,6 @@
 <div  id=SearchResultCount style="margin-top: 50px;"></div>
 
 <div  class="container-fluid" id=SearchResult style="margin-top: 20px;">
- 
- 
  
 </div>
  
@@ -48,33 +51,66 @@
 
 $(document).ready(function(){       
 
-const databasefileurl = 'https://raw.githubusercontent.com/d0shir0/hacking-in-pop-culture/refs/heads/main/database.json';
-var tactics = [];
-var elements = [];
-var scenes = [];
 
+  console.log("ok");
+
+ function updateStats() {
+   const databasefileurl = 'https://raw.githubusercontent.com/d0shir0/hacking-in-pop-culture/refs/heads/main/database.json';
+    var tactics = [];
+    var elements = [];
+    var scenes = [];
+    var tacticscount = 0;
+    var elementscount = 0;
+    var scenescount = 0;
+    $.ajax({
+      url: databasefileurl,
+      type:"get",
+      dataType: 'json',  
+      error: function(data){
+        console.log('file not found');
+      },
+      success:function(data) {
+              
+      tacticscount = data.tactics.length;
+      elements =  data.elements;
+      elementscount = data.elements.length;
+      $.each(elements, function( index, element) {
+        scenes = element.scenes;
+        scenescount +=  element.scenes.length;
+      }); 
+
+      document.getElementById("tacticsCount").innerHTML = tacticscount;
+      document.getElementById("elementsCount").innerHTML = elementscount;
+      document.getElementById("scenesCount").innerHTML = scenescount;
+
+
+      }
+    }); 
+
+ }
 
  function searchDatabase(searchtext) {
 
+    const databasefileurl = 'https://raw.githubusercontent.com/d0shir0/hacking-in-pop-culture/refs/heads/main/database.json';
+    var tactics = [];
+    var elements = [];
+    var scenes = [];
     var searchresult;
     var searchresultcount = 0;
+    var tacticscount = 0;
+    var elementscount = 0;
+    var scenescount = 0;
 
   $.ajax({
     url: databasefileurl,
     type:"get",
     dataType: 'json',  
     error: function(data){
-      alert('file not found');
+      console.log('file not found');
     },
     success:function(data) {
             
     tactics = data.tactics;
-    elements =  data.elements;
-    scenes = data.scenes;
-    
-    document.getElementById("tacticsCount").innerHTML = tactics.length;
-    document.getElementById("elementsCount").innerHTML = elements.length;
-    document.getElementById("scenesCount").innerHTML = scenes.length;
 
     $.each(tactics, function( index, tactic) {
       
@@ -88,10 +124,14 @@ var scenes = [];
           resultitem += '</div>';
         
           searchresult += resultitem;
-          searchresultcount ++
+          searchresultcount ++;
+          tacticscount ++;
+  
       }
 
     });
+
+     elements =  data.elements;
 
     $.each(elements, function( index, element) {
       
@@ -105,36 +145,48 @@ var scenes = [];
           resultitem += '</div>';
         
           searchresult += resultitem;
-          searchresultcount ++
+          searchresultcount ++;
+          elementscount ++;
+
+          scenes = element.scenes;
+
+          $.each(scenes, function( index, scene) {
+            
+            if(JSON.stringify(scene).toLowerCase().match(searchtext.toLowerCase())){
+                var resultitem = '<div class="card">';
+                resultitem += ' <div class="card-body">';
+                resultitem += ' <h5 class="card-title">'+ scene.description +'</h5>';
+                resultitem += ' <p class="card-text">'+ scene.id +'</p>';
+                resultitem += '  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>';
+                resultitem += ' </div>';
+                resultitem += '</div>';
+              
+                searchresult += resultitem;
+                searchresultcount ++;
+                scenescount ++;
+            }
+
+          });
       }
 
     });
 
-    $.each(scenes, function( index, scene) {
-      
-      if(JSON.stringify(scene).toLowerCase().match(searchtext.toLowerCase())){
-          var resultitem = '<div class="card">';
-          resultitem += ' <div class="card-body">';
-          resultitem += ' <h5 class="card-title">'+ scene.description +'</h5>';
-          resultitem += ' <p class="card-text">'+ scene.id +'</p>';
-          resultitem += '  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>';
-          resultitem += ' </div>';
-          resultitem += '</div>';
-        
-          searchresult += resultitem;
-          searchresultcount ++
-      }
 
-    });
  
-   document.getElementById("SearchResultCount").innerHTML = searchresultcount + " items found";
-   document.getElementById("SearchResult").innerHTML = searchresult;
+    document.getElementById("tacticsCount").innerHTML = tacticscount;
+    document.getElementById("elementsCount").innerHTML = elementscount;
+    document.getElementById("scenesCount").innerHTML = scenescount;
+    document.getElementById("SearchResultCount").innerHTML = searchresultcount + " items found";
+    document.getElementById("SearchResult").innerHTML = searchresult;
            
      }
   }); 
 
 }; 
 
+// update des stats
+
+updateStats();
 
 /// Search in database
  var searchtext;
