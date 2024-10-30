@@ -7,7 +7,9 @@
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
  </head>
 <body>
-<div>
+<div class="container-fluid" id="maintenance">Site in maintenance</div>
+<div class="container-fluid" id="site">
+  <div>
   <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
@@ -17,31 +19,34 @@
     </div>
   </nav>
 </div>
-
 <div class="d-flex justify-content-center">
-  <div class="d-flex align-items-center">
-    <div>
-      <div class="input-group input-group-lg flex-nowrap">
+  <div class="d-flex align-items-center w-50">
+    
+      <div class="input-group input-group-lg flex-nowrap" style="margin-top: 50px;">
         <span class="input-group-text" id="search">Search</span>
         <input type="text" class="form-control" placeholder="Movie, TV show, book, CyberSecurity tactic or technique" aria-label="search" aria-describedby="addon-wrapping" id="searchinput">
       </div>
       </div>
-    </div>
+    
   </div>
   <div class="d-flex justify-content-center">
-    <span><button type="button" class="btn text-bg-light">Tactics<span  style="margin: 5px;" class="badge text-bg-secondary"><span id="tacticsCount"></span></button></span>
-    <span><button type="button" class="btn text-bg-light" >Movies/TVShows/Books<span  style="margin: 5px;" class="badge text-bg-secondary"><span id="elementsCount"></span></button></span>
-    <span><button type="button" class="btn text-bg-light">Scenes <span  style="margin: 5px;" class="badge text-bg-secondary"><span id="scenesCount"></span></span></button></span>
+    <span><button type="button" class="btn text-bg-light"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm4.5 5.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+    </svg><span  style="margin: 5px;" class="badge text-bg-secondary"><span  id="tacticsCount"></span></button></span>
+    <span><button type="button" class="btn text-bg-light" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-film" viewBox="0 0 16 16">
+      <path d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm4 0v6h8V1zm8 8H4v6h8zM1 1v2h2V1zm2 3H1v2h2zM1 7v2h2V7zm2 3H1v2h2zm-2 3v2h2v-2zM15 1h-2v2h2zm-2 3v2h2V4zm2 3h-2v2h2zm-2 3v2h2v-2zm2 3h-2v2h2z"/>
+    </svg><span  style="margin: 5px;" class="badge text-bg-secondary"><span id="elementsCount"></span></button></span>
+    <span><button type="button" class="btn text-bg-light"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
+      <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+      <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.4 5.4 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2z"/>
+    </svg><span  style="margin: 5px;" class="badge text-bg-secondary"><span id="scenesCount"></span></span></button></span>
   </div>
   <div>
 </div>
-
-<div  id=SearchResultCount style="margin-top: 50px;"></div>
-
+<div  class="container-fluid" id=SearchResultCount style="margin-top: 50px;"></div>
 <div  class="container-fluid" id=SearchResult style="margin-top: 20px;">
- 
 </div>
- 
+</div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -52,7 +57,25 @@
 $(document).ready(function(){       
 
 
-  console.log("ok");
+
+ function getsitestatus() {
+  const sitestatusurl = 'https://raw.githubusercontent.com/d0shir0/hacking-in-pop-culture/refs/heads/main/maintenance.json';
+ 
+  $.ajax({
+      url: sitestatusurl,
+      type:"get",
+      dataType: 'json',  
+      error: function(data){
+        document.getElementById("site").hidden = true;
+        document.getElementById("maintenance").hidden = false;
+      },
+      success:function(data) {
+        
+        return data.maintenance;
+
+      }
+    }); 
+ } 
 
  function updateStats() {
    const databasefileurl = 'https://raw.githubusercontent.com/d0shir0/hacking-in-pop-culture/refs/heads/main/database.json';
@@ -89,17 +112,39 @@ $(document).ready(function(){
 
  }
 
+ function isImageExists(url){
+
+  var a = document.createElement('a');
+  a.href = url;
+  
+    $.get(a.pathname).done(function () {
+
+      return true;
+    
+    }).fail(function () {
+    
+      return false;
+    
+    });
+ 
+ }
+ 
  function searchDatabase(searchtext) {
 
     const databasefileurl = 'https://raw.githubusercontent.com/d0shir0/hacking-in-pop-culture/refs/heads/main/database.json';
     var tactics = [];
+    var techniques = [];
     var elements = [];
     var scenes = [];
-    var searchresult;
+    var searchresult = "";
     var searchresultcount = 0;
     var tacticscount = 0;
+    var techniquescount = 0;
     var elementscount = 0;
     var scenescount = 0;
+
+    var resultitem = '';
+    var techniqueresultitem = '';
 
   $.ajax({
     url: databasefileurl,
@@ -112,37 +157,105 @@ $(document).ready(function(){
             
     tactics = data.tactics;
 
+
+    searchresult = '<div class="list-group">';
+    
     $.each(tactics, function( index, tactic) {
+
+      if(tactic.techniques != null ){
+  
+        techniques = techniques.concat(tactic.techniques);
       
+      }
+
       if(JSON.stringify(tactic).toLowerCase().match(searchtext.toLowerCase())){
-          var resultitem = '<div class="card">';
-          resultitem += ' <div class="card-body">';
-          resultitem += ' <h5 class="card-title">'+ tactic.name +'</h5>';
-          resultitem += ' <p class="card-text">'+ tactic.id +'</p>';
-          resultitem += '  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>';
+
+          var resultitem = '';
+          resultitem += '<a href="tactics.html?tactic=' + tactic.id + '" class="list-group-item list-group-item-action">';
+          resultitem += ' <div  class="d-flex w-100 justify-content-left">';    
+          resultitem += '   <div>';
+          if(isImageExists("resources/" + tactic.id + ".png")){
+            resultitem += '     <img src="resources/' + tactic.id + '.png" width="100" height="100" class="mr-3"  alt="' + tactic.name + '">';  
+          }else{
+            resultitem += '     <img src="resources/default.png" width="100" height="100" class="mr-3"  alt="' + tactic.name + '">';
+          }
+          resultitem += '   </div>';
+          resultitem += '   <div class="container-fluid">';
+          resultitem += '     <span class="badge bg-secondary">Tactic</span>';
+          resultitem += '     <p class="mb-1">' + tactic.name + '</p>';
+          resultitem += '     <button type="button" class="btn btn-light">Techniques <span class="badge bg-success">' + tactic.techniques.length +'</span></button>';
+          resultitem += '   </div>';
+          resultitem += '   <small class=" text-body-secondary">';
+          resultitem += '   </small>';
           resultitem += ' </div>';
-          resultitem += '</div>';
-        
+          resultitem += '</a>';
+
           searchresult += resultitem;
           searchresultcount ++;
-          tacticscount ++;
-  
+          tacticscount ++;         
       }
 
     });
+    
+    //alert(JSON.stringify(techniques));
+                     
+    $.each(techniques, function( index, technique) {
+    
+      if(JSON.stringify(technique).toLowerCase().match(searchtext.toLowerCase())){      
 
-     elements =  data.elements;
+          var resultitem = '<a href="techniques?technique=' + technique.id + '" class="list-group-item list-group-item-action">';
+          resultitem += ' <div  class="d-flex w-100 justify-content-left">';    
+          resultitem += '   <div>';
+          if(isImageExists("resources/" + technique.id + ".png")){
+            resultitem += '     <img src="resources/' + technique.id + '.png" width="100" height="100" class="mr-3"  alt="' + technique.name + '">';  
+          }else{
+            resultitem += '     <img src="resources/default.png" width="100" height="100" class="mr-3"  alt="' + technique.name + '">';
+          }
+          resultitem += '   </div>';
+          resultitem += '   <div class="container-fluid">';
+          resultitem += '     <span class="badge bg-secondary">Technique</span>';
+          resultitem += '     <p class="mb-1">' + technique.name + '</p>';
+          resultitem += '     <button type="button" class="btn btn-light">Movies/TVShows/Books<span class="badge bg-success">' + '</span></button>';
+          resultitem += '   </div>';
+          resultitem += '   <small class=" text-body-secondary">';
+          resultitem += '   </small>';
+          resultitem += ' </div>';
+          resultitem += '</a>';
 
+          searchresult += resultitem;
+          searchresultcount ++;
+          techniquescount  ++;     
+              
+      }
+    
+    });
+
+
+    elements =  data.elements;
+   
     $.each(elements, function( index, element) {
       
       if(JSON.stringify(element).toLowerCase().match(searchtext.toLowerCase())){
-          var resultitem = '<div class="card">';
-          resultitem += ' <div class="card-body">';
-          resultitem += ' <h5 class="card-title">'+ element.title +'</h5>';
-          resultitem += ' <p class="card-text">'+ element.id +'</p>';
-          resultitem += '  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>';
+
+          var resultitem = '<a href="items.html?item=' + element.id + '" class="list-group-item list-group-item-action">';
+          resultitem += ' <div  class="d-flex w-100 justify-content-left">';    
+          resultitem += '   <div>';
+           if(isImageExists("resources/" + element.id + ".png")){
+            resultitem += '     <img src="resources/' + element.id + '.png" width="100" height="100" class="mr-3"  alt="' + element.title + '">';  
+          }else{
+            resultitem += '     <img src="resources/default.png" width="100" height="100" class="mr-3"  alt="' + element.title + '">';
+          }
+          resultitem += '   </div>';
+          resultitem += '   <div class="container-fluid">';
+          resultitem += '     <span class="badge bg-secondary">' + element.type + '</span>';
+          resultitem += '     <p class="mb-1">' + element.title + '</p>';
+          resultitem += '     <button type="button" class="btn btn-light">Scenes <span class="badge bg-success">' + element.scenes.length +'</span></button>';
+          resultitem += '   </div>';
+          resultitem += '   <small class=" text-body-secondary">';
+          resultitem += '   </small>';
           resultitem += ' </div>';
-          resultitem += '</div>';
+          resultitem += '</a>';
+
         
           searchresult += resultitem;
           searchresultcount ++;
@@ -172,11 +285,17 @@ $(document).ready(function(){
     });
 
 
- 
+    searchresult += '</div>';
+   
     document.getElementById("tacticsCount").innerHTML = tacticscount;
     document.getElementById("elementsCount").innerHTML = elementscount;
     document.getElementById("scenesCount").innerHTML = scenescount;
-    document.getElementById("SearchResultCount").innerHTML = searchresultcount + " items found";
+    if (searchresultcount > 1) { 
+      document.getElementById("SearchResultCount").innerHTML = searchresultcount + " items found";
+    }else{
+      document.getElementById("SearchResultCount").innerHTML = searchresultcount + " item found";
+    }
+
     document.getElementById("SearchResult").innerHTML = searchresult;
            
      }
@@ -184,29 +303,44 @@ $(document).ready(function(){
 
 }; 
 
-// update des stats
 
-updateStats();
+// Site status
+ 
+  var SiteInMmaintenance = getsitestatus(); 
 
-/// Search in database
- var searchtext;
+if (SiteInMmaintenance){
+  document.getElementById("site").hidden = true;
+  document.getElementById("maintenance").hidden = false;
+}
+else {
 
- // with keyboard
-  $(document).on('keypress',function(e) {
-    if(e.which == 13) {
-       searchtext = $('#searchinput').val();
-       searchDatabase(searchtext);
+  document.getElementById("site").hidden = false;
+  document.getElementById("maintenance").hidden = true;
+
+    // update des stats
+
+    updateStats();
+
+    /// Search in database
+    var searchtext;
+
+  // with keyboard
+    $(document).on('keypress',function(e) {
+      if(e.which == 13) {
+        searchtext = $('#searchinput').val();
+        searchDatabase(searchtext);
+      }
+    });
+
+    // with mouse
+  $("#search").on({
+    click: function(){
+      searchtext = $('#searchinput').val();
+      searchDatabase(searchtext);
     }
- });
-
-// with mouse
- $("#search").on({
-  click: function(){
-    searchtext = $('#searchinput').val();
-    searchDatabase(searchtext);
-  }
-  }); 
-///
+    }); 
+  ///
+}
 
 });
 
@@ -214,3 +348,4 @@ updateStats();
 </script>
 </body>
 </html>
+ 
